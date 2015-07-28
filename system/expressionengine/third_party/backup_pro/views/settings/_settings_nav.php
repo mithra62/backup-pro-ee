@@ -17,6 +17,9 @@
 			<a class="nav_button <?php echo ($section == 'storage' ? 'current' : ''); ?>" href="<?php echo $url_base.'view_storage'; ?>">Storage Locations</a>
 		</span>
 		<span class="button"> 
+			<a class="nav_button <?php echo ($section == 'integrity_agent' ? 'current' : ''); ?>" href="<?php echo $url_base.'settings&section=integrity_agent'; ?>">Integrity Agent</a>
+		</span>
+		<span class="button"> 
 			<a class="nav_button <?php echo ($section == 'license' ? 'current' : ''); ?>" href="<?php echo $url_base.'settings&section=license'; ?>">License Details</a>
 		</span>			
 	</div>

@@ -66,7 +66,7 @@ class Backup_pro_lib
 			'files' => array('url' => 'files', 'target' => '_self', 'div_class' => ''),
 			'cron' => array('url' => 'cron', 'target' => '', 'div_class' => ''),
 			'storage' => array('url' => 'storage', 'target' => '', 'div_class' => ''),
-			//'integrity_agent' => array('url' => 'integrity_agent', 'target' => '', 'div_class' => ''),
+			'integrity_agent' => array('url' => 'integrity_agent', 'target' => '', 'div_class' => ''),
 			'license' => array('url' => 'license', 'target' => '', 'div_class' => ''),
 		);
 	
