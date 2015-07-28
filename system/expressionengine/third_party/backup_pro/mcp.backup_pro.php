@@ -95,7 +95,7 @@ class Backup_pro_mcp extends Eecms
 		$this->url_base = BASE.AMP.$this->query_base;
 		ee()->backup_pro->set_url_base($this->url_base);
 
-		$nav_links = ee()->backup_pro->get_right_menu();
+		$nav_links = ee()->backup_pro->get_right_menu($this->settings);
 		ee()->load->vars(
 		    array(
 		        'url_base' => $this->url_base,
