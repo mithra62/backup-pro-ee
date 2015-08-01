@@ -25,12 +25,22 @@
 <h3  class="accordion"><?=$view_helper->m62Lang('configure_cron_notification')?></h3>
 <?php 
 	$this->table->set_heading($view_helper->m62Lang('setting'),$view_helper->m62Lang('value'));
-	
-		
-	$this->table->add_row('<label for="cron_notify_emails">'.$view_helper->m62Lang('cron_notify_emails').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_emails_instructions').'</div>', form_textarea('cron_notify_emails', $form_data['cron_notify_emails'], 'cols="90" rows="6" id="cron_notify_emails" '));
-	$this->table->add_row('<label for="cron_notify_email_mailtype">'.$view_helper->m62Lang('cron_notify_email_mailtype').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_email_mailtype_instructions').'</div>', form_dropdown('cron_notify_email_mailtype', array('html' => 'html', 'text' => 'text'), $form_data['cron_notify_email_mailtype'], 'id="cron_notify_email_mailtype"'));
-	$this->table->add_row('<label for="cron_notify_email_subject">'.$view_helper->m62Lang('cron_notify_email_subject').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_email_subject_instructions').'</div>', form_input('cron_notify_email_subject', $form_data['cron_notify_email_subject'], 'id="cron_notify_email_subject"'));
-	$this->table->add_row('<label for="cron_notify_email_message">'.$view_helper->m62Lang('cron_notify_email_message').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_email_message_instructions').'</div>', form_textarea('cron_notify_email_message', $form_data['cron_notify_email_message'], 'cols="90" rows="6" id="cron_notify_email_message" '));
+	$this->table->add_row(
+	    '<label for="cron_notify_emails">'.$view_helper->m62Lang('cron_notify_emails').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_emails_instructions').'</div>', 
+	    form_textarea('cron_notify_emails', $form_data['cron_notify_emails'], 'cols="90" rows="6" id="cron_notify_emails" ').m62_form_errors($form_errors['cron_notify_emails'])
+	);
+	$this->table->add_row(
+	    '<label for="cron_notify_email_mailtype">'.$view_helper->m62Lang('cron_notify_email_mailtype').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_email_mailtype_instructions').'</div>', 
+	    form_dropdown('cron_notify_email_mailtype', array('html' => 'html', 'text' => 'text'), $form_data['cron_notify_email_mailtype'], 'id="cron_notify_email_mailtype"').m62_form_errors($form_errors['cron_notify_email_mailtype'])
+	);
+	$this->table->add_row(
+	    '<label for="cron_notify_email_subject">'.$view_helper->m62Lang('cron_notify_email_subject').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_email_subject_instructions').'</div>', 
+	    form_input('cron_notify_email_subject', $form_data['cron_notify_email_subject'], 'id="cron_notify_email_subject"').m62_form_errors($form_errors['cron_notify_email_subject'])
+	);
+	$this->table->add_row(
+	    '<label for="cron_notify_email_message">'.$view_helper->m62Lang('cron_notify_email_message').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_email_message_instructions').'</div>', 
+	    form_textarea('cron_notify_email_message', $form_data['cron_notify_email_message'], 'cols="90" rows="6" id="cron_notify_email_message" ').m62_form_errors($form_errors['cron_notify_email_message'])
+	);
 	
 	echo $this->table->generate();
 	$this->table->clear();	
