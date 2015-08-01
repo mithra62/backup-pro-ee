@@ -7,7 +7,10 @@
  * @version		2.0
  * @filesource 	./system/expressionengine/third_party/backup_pro/
  */
- 
+
+require_once PATH_THIRD.'backup_pro/vendor/autoload.php';
+use mithra62\BackupPro\Platforms\Controllers\Eecms;
+
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 include PATH_THIRD.'backup_pro/config'.EXT;
@@ -21,7 +24,7 @@ include PATH_THIRD.'backup_pro/config'.EXT;
  * @author		Eric Lamb
  * @filesource 	./system/expressionengine/third_party/backup_pro/ext.backup_pro.php
  */
-class Backup_pro_ext 
+class Backup_pro_ext extends Eecms
 {
 	/**
 	 * The Backup Pro settings array
@@ -70,6 +73,7 @@ class Backup_pro_ext
 	 */
 	public function __construct()
 	{
+	    parent::__construct();
 		$path = dirname(realpath(__FILE__));
 		include $path.'/config'.EXT;
 		$this->docs_url = $config['docs_url'];
@@ -182,23 +186,35 @@ class Backup_pro_ext
 	 */
 	public function check_backup_state()
 	{
-
-	    return;
-		ee()->load->model('backup_pro_settings_model', 'backup_pro_settings', TRUE);
-		ee()->load->library('backup_pro_lib', null, 'backup_pro');
-		$this->settings = ee()->backup_pro->get_settings();
+	    $this->settings = $this->services['settings']->get();
 		if($this->settings['check_backup_state_cp_login'] != '1')
 		{
 			return;
 		}
 		
-		ee()->backup_pro->set_backup_dir($this->settings['backup_store_location']);
-		
-		ee()->backup_pro->set_url_base($this->url_base);
-		ee()->backup_pro->set_db_info($this->db_conf);
-				
-		ee()->load->library('Backup_pro_integrity_agent', null, 'integrity_agent');
-		ee()->integrity_agent->monitor_backup_state();
+        $backup = $this->services['backups']->setBackupPath($this->settings['working_directory']);
+        $backups = $backup->getAllBackups($this->settings['storage_details']);
+        $backup_meta = $backup->getBackupMeta($backups);
+        $errors = $backup->getIntegrity()->monitorBackupState($backup_meta, $this->settings);
+        
+        if(isset($errors['backup_state_db_backups']) || isset($errors['backup_state_files_backups']))
+        {
+            $notify = $this->services['notify'];
+            $notify->getMail()->setConfig($this->platform->getEmailConfig());
+            
+            //we have a winner! start the notification process
+            $last_notified = $this->settings['backup_missed_schedule_notify_email_last_sent'];
+            $next_notified = mktime(date('G', $last_notified)+$this->settings['backup_missed_schedule_notify_email_interval'], date('i', $last_notified), 0, date('n', $last_notified), date('j', $last_notified), date('Y', $last_notified));
+            
+            if(time() > $next_notified && (is_array($this->settings['backup_missed_schedule_notify_emails']) &&  count($this->settings['backup_missed_schedule_notify_emails']) >= 1 ))
+            {
+                $backup = $this->services['backup']->setStoragePath($this->settings['working_directory']);
+                $notify->setBackup($backup)->sendBackupState($this->settings['backup_missed_schedule_notify_emails'], $backup_meta, $errors);
+                
+                $data = array('backup_missed_schedule_notify_email_last_sent' => time());
+                $this->services['settings']->update($data);
+            }
+        }        
 	}
 
 	/**
