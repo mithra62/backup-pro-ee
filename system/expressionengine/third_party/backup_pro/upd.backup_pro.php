@@ -79,7 +79,10 @@ class Backup_pro_upd
 	
 		ee()->db->insert('modules', $data);
 		
-		$sql = "INSERT INTO exp_actions (class, method) VALUES ('".$this->name."', 'cron')";
+		$sql = "INSERT INTO ".ee()->db->dbprefix."actions (class, method) VALUES ('".$this->name."', 'cron')";
+		ee()->db->query($sql);
+
+		$sql = "INSERT INTO ".ee()->db->dbprefix."actions (class, method) VALUES ('".$this->name."', 'integrity')";
 		ee()->db->query($sql);
 
 		$this->add_settings_table();

@@ -73,7 +73,11 @@ class Backup_pro_ext extends Eecms
 	 */
 	public function __construct()
 	{
-	    parent::__construct();
+	    if( ee()->input->get_post('package') != 'backup_pro' && ee()->input->get_post('package') != 'addons_module' )
+	    {
+	       parent::__construct(); //don't do this on install extension
+	    }
+	    
 		$path = dirname(realpath(__FILE__));
 		include $path.'/config'.EXT;
 		$this->docs_url = $config['docs_url'];
@@ -86,10 +90,10 @@ class Backup_pro_ext extends Eecms
 		ee()->lang->loadfile('backup_pro');
 
 		$this->db_conf = array(
-				'user' => ee()->db->username,
-				'pass' => ee()->db->password,
-				'db_name' => ee()->db->database,
-				'host' => ee()->db->hostname
+    		'user' => ee()->db->username,
+    		'pass' => ee()->db->password,
+    		'db_name' => ee()->db->database,
+    		'host' => ee()->db->hostname
 		);			
 		
 		$this->query_base = 'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module=backup_pro'.AMP.'method=';	

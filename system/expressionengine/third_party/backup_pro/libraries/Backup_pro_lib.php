@@ -114,11 +114,38 @@ class Backup_pro_lib
 		);
 	}
 	
+	/**
+	 * Returns the Action ID for the Cron action
+	 */
 	public function get_cron_action()
 	{
 		ee()->load->dbforge();
 		ee()->db->select('action_id');
 		$query = ee()->db->get_where('actions', array('class' => 'Backup_pro', 'method' => 'cron'));		
+		return $query->row('action_id');
+	}
+	
+	/**
+	 * Returns the Cron output array
+	 * @return array
+	 */
+	public function get_ia_cron_commands()
+	{
+		$action_id = $this->get_ia_cron_action();
+		$url = ee()->config->config['site_url'].'?ACT='.$action_id;
+		return array(
+			'verify_backup_stability' => array('url' => $url, 'cmd' => '0 * * * * * curl "'.$url.'"')
+		);
+	}
+	
+	/**
+	 * Returns the Action ID for the Integrity Agent Cron action
+	 */
+	public function get_ia_cron_action()
+	{
+		ee()->load->dbforge();
+		ee()->db->select('action_id');
+		$query = ee()->db->get_where('actions', array('class' => 'Backup_pro', 'method' => 'integrity'));		
 		return $query->row('action_id');
 	}
 	

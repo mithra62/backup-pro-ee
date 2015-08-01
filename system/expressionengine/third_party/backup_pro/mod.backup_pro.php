@@ -10,6 +10,7 @@
  */
 
 require_once PATH_THIRD.'backup_pro/vendor/autoload.php';
+
 use mithra62\BackupPro\Platforms\Controllers\Eecms;
 use mithra62\BackupPro\Platforms\Controllers\Eecms\Cron;
 
