@@ -26,9 +26,23 @@
 	</tr>
 </thead>
 <tbody>
-<?php foreach($backups AS $backup): ?>
+<?php foreach($backups AS $backup): 
+
+	if($backup['verified'] == '0')
+	{
+		$status_class = 'backup_pro_backup_warn';
+	}
+	elseif($backup['verified'] == 'success')
+	{
+		$status_class = 'backup_pro_backup_success';
+	}
+	elseif($backup['verified'] == 'fail')
+	{
+		$status_class = 'backup_pro_backup_fail';
+	}
+?>
 <tr class="odd">
-	<td class=" backup_pro_backup_status backup_pro_backup_warn"></td>
+	<td class=" backup_pro_backup_status <?php echo $status_class; ?>"></td>
 	<?php if(isset($enable_delete) && $enable_delete == 'yes' ): ?>
 	<td><?php echo form_checkbox('backups[]', urlencode($view_helper->m62Encode($backup['file_name'])), false, 'id="'.$backup['hash'].'"'); ?></td>
 	<?php endif; ?>
