@@ -63,7 +63,7 @@
 		<?php endif; ?>
 	</td>
 	<td style="white-space: nowrap">
-		<?php echo $view_helper->m62DateTime($backup['created_date']); ?>
+		<!-- <?php echo $backup['created_date']; ?> --><?php echo $view_helper->m62DateTime($backup['created_date']); ?>
 	</td>
 	<?php if(isset($enable_type) && $enable_type == 'yes' ): ?>
 	<td><?php echo $view_helper->m62Lang($backup['backup_type']); ?></td>
