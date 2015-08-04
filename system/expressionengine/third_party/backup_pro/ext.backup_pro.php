@@ -9,7 +9,9 @@
  */
 
 require_once PATH_THIRD.'backup_pro/vendor/autoload.php';
+
 use mithra62\BackupPro\Platforms\Controllers\Eecms;
+use mithra62\BackupPro\BackupPro;
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -24,7 +26,7 @@ include PATH_THIRD.'backup_pro/config'.EXT;
  * @author		Eric Lamb
  * @filesource 	./system/expressionengine/third_party/backup_pro/ext.backup_pro.php
  */
-class Backup_pro_ext extends Eecms
+class Backup_pro_ext extends Eecms implements BackupPro
 {
 	/**
 	 * The Backup Pro settings array
@@ -42,7 +44,7 @@ class Backup_pro_ext extends Eecms
 	 * Version number (overriden)
 	 * @var float
 	 */
-	public $version = '3.0.1';
+	public $version = self::version;
 	
 	/**
 	 * Description of the add-on
@@ -83,7 +85,6 @@ class Backup_pro_ext extends Eecms
 		$this->docs_url = $config['docs_url'];
 		$this->class = $this->name = $config['class_name'];
 		$this->settings_table = $config['settings_table'];
-		$this->version = $config['version'];
 		$this->mod_name = $config['mod_url_name'];
 		$this->ext_class_name = $config['ext_class_name'];
 		

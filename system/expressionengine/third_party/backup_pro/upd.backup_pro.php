@@ -12,7 +12,8 @@
  
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-include PATH_THIRD.'backup_pro/config'.EXT;
+require_once PATH_THIRD.'backup_pro/vendor/autoload.php';
+use mithra62\BackupPro\BackupPro;
 
 /**
  * Backup Pro - Update Class
@@ -23,13 +24,13 @@ include PATH_THIRD.'backup_pro/config'.EXT;
  * @author		Eric Lamb
  * @filesource 	./system/expressionengine/third_party/backup_pro/upd.backup_pro.php
  */
-class Backup_pro_upd 
+class Backup_pro_upd implements BackupPro
 { 
 	/**
 	 * Sets the version
 	 * @var string
 	 */
-    public $version = '3.0.1'; 
+    public $version = self::version; 
     
     /**
      * Name of the module class
@@ -58,7 +59,6 @@ class Backup_pro_upd
     	include $path.'/config'.EXT;
     	$this->class = $config['class_name'];
     	$this->settings_table = $config['settings_table'];
-    	$this->version = $config['version'];
     	$this->ext_class_name = $config['ext_class_name'];
     } 
     
