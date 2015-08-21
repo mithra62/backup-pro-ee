@@ -99,10 +99,10 @@ class Backup_pro_lib
 	 * Returns the Cron output array
 	 * @return array
 	 */
-	public function get_cron_commands()
+	public function get_cron_commands(array $settings)
 	{
 		$action_id = $this->get_cron_action();
-		$url = ee()->config->config['site_url'].'?ACT='.$action_id;
+		$url = ee()->config->config['site_url'].'?backup_pro='.$settings['cron_query_key'].AMP.'ACT='.$action_id;
 		return array(
 			 'file_backup' => array('url' => $url.AMP.'type=file', 'cmd' => 'curl "'.$url.AMP.'type=files"'),
 			 'db_backup' => array('url' => $url.AMP.'type=db', 'cmd' => 'curl "'.$url.AMP.'type=db"')
@@ -124,10 +124,10 @@ class Backup_pro_lib
 	 * Returns the Cron output array
 	 * @return array
 	 */
-	public function get_ia_cron_commands()
+	public function get_ia_cron_commands(array $settings)
 	{
 		$action_id = $this->get_ia_cron_action();
-		$url = ee()->config->config['site_url'].'?ACT='.$action_id;
+		$url = ee()->config->config['site_url'].'?backup_pro='.$settings['cron_query_key'].AMP.'ACT='.$action_id;
 		return array(
 			'verify_backup_stability' => array('url' => $url, 'cmd' => '0 * * * * * curl "'.$url.'"')
 		);

@@ -9,6 +9,11 @@
 	    '<label for="working_directory">'.$view_helper->m62Lang('working_directory').'</label><div class="subtext">'.$view_helper->m62Lang('working_directory_instructions').'</div>', 
 	    form_input('working_directory', $form_data['working_directory'], 'id="working_directory"').m62_form_errors($form_errors['working_directory'])
     );
+
+	$this->table->add_row(
+	    '<label for="cron_query_key">'.$view_helper->m62Lang('cron_query_key').'</label><div class="subtext">'.$view_helper->m62Lang('cron_query_key_instructions').'</div>',
+	    form_input('cron_query_key', $form_data['cron_query_key'], 'id="cron_query_key"').m62_form_errors($form_errors['cron_query_key'])
+	);
 	
 	$this->table->add_row(
 	    '<label for="dashboard_recent_total">'.$view_helper->m62Lang('dashboard_recent_total').'</label><div class="subtext">'.$view_helper->m62Lang('dashboard_recent_total_instructions').'</div>', 
