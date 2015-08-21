@@ -21,7 +21,7 @@ use mithra62\BackupPro\Platforms\Controllers\Eecms\Backup AS BackupController;
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 include PATH_THIRD.'backup_pro/config'.EXT;
 
- /**
+/**
  * Backup Pro - CP
  *
  * Control Panel class

@@ -26,12 +26,7 @@ class Backup_pro_lib
 	 */
 	public function get_right_menu(array $settings)
 	{
-	    if( empty($settings['working_directory']) )
-	    {
-            return array('settings' => $this->url_base.'settings'.AMP.'section=general');    
-	    }
-	    
-		$menu = array(
+	   $menu = array(
 			'dashboard'		=> $this->url_base.'index',
 		    'backup_db'		=> $this->url_base.'backup&type=database',
 		    'backup_files'	=> $this->url_base.'backup&type=files'
