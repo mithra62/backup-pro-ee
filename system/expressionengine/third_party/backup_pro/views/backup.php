@@ -43,7 +43,7 @@
             echo $view_helper->m62Lang($error);
             if( $error == 'no_storage_locations_setup' )
             {
-                echo ' <a href="'.$url_base.'settings&section=storage&action=new&engine=local">Setup Storage Location</a>';
+                echo ' <a href="'.$url_base.'new_storage&engine=local">Setup Storage Location</a>';
             }
             elseif( $error == 'license_number' || $error == 'missing_license_number' )
             {
