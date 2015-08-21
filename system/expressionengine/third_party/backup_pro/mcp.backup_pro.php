@@ -10,13 +10,15 @@
  */
 
 require_once PATH_THIRD.'backup_pro/vendor/autoload.php';
+require_once PATH_THIRD.'backup_pro/libraries/controllers/Settings'.EXT;
+require_once PATH_THIRD.'backup_pro/libraries/controllers/Dashboard'.EXT;
+require_once PATH_THIRD.'backup_pro/libraries/controllers/Manage'.EXT;
+require_once PATH_THIRD.'backup_pro/libraries/controllers/Storage'.EXT;
+require_once PATH_THIRD.'backup_pro/libraries/controllers/Restore'.EXT;
+require_once PATH_THIRD.'backup_pro/libraries/controllers/Backup'.EXT;
+
 use mithra62\BackupPro\Platforms\Controllers\Eecms;
-use mithra62\BackupPro\Platforms\Controllers\Eecms\Settings AS SettingsController;
-use mithra62\BackupPro\Platforms\Controllers\Eecms\Dashboard AS DashboardController;
-use mithra62\BackupPro\Platforms\Controllers\Eecms\Manage AS ManageController;
-use mithra62\BackupPro\Platforms\Controllers\Eecms\Storage AS StorageController;
-use mithra62\BackupPro\Platforms\Controllers\Eecms\Restore AS RestoreController;
-use mithra62\BackupPro\Platforms\Controllers\Eecms\Backup AS BackupController;
+
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 include PATH_THIRD.'backup_pro/config'.EXT;
@@ -32,12 +34,12 @@ include PATH_THIRD.'backup_pro/config'.EXT;
  */
 class Backup_pro_mcp extends Eecms
 {   
-    use SettingsController, 
-        DashboardController, 
-        ManageController, 
-        StorageController, 
-        BackupController,
-        RestoreController;
+    use BackupProSettingsController, 
+        BackupProDashboardController, 
+        BackupProManageController, 
+        BackupProStorageController, 
+        BackupProRestoreController,
+        BackupProBackupController;
         
 	/**
 	 * The URL to access the module

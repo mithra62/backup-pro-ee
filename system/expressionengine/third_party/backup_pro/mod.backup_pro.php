@@ -12,10 +12,10 @@
 require_once PATH_THIRD.'backup_pro/vendor/autoload.php';
 
 use mithra62\BackupPro\Platforms\Controllers\Eecms;
-use mithra62\BackupPro\Platforms\Controllers\Eecms\Cron;
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 include PATH_THIRD.'backup_pro/config'.EXT;
+require_once PATH_THIRD.'backup_pro/libraries/controllers/Cron'.EXT;
 
 
 /**
@@ -29,7 +29,7 @@ include PATH_THIRD.'backup_pro/config'.EXT;
  */
 class Backup_pro extends Eecms
 {
-    use Cron;
+    use BackupProCronController;
     
 	public $return_data	= '';
 }
