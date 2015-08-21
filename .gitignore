@@ -3,3 +3,6 @@
 /.settings
 /system/expressionengine/third_party/backup_pro/mithra62
 /system/expressionengine/third_party/backup_pro/vendor
+/themes/third_party/backup_pro/images
+/themes/third_party/backup_pro/js
+/themes/third_party/backup_pro/css
