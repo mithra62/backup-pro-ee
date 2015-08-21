@@ -22,8 +22,8 @@
 	
 	$this->table->add_row(
 	    '<label for="auto_threshold">'.$view_helper->m62Lang('auto_threshold').' </label><div class="subtext">'.$view_helper->m62Lang('auto_threshold_instructions').'</div>', 
-	    form_dropdown('auto_threshold', $threshold_options, $form_data['auto_threshold'], 'id="auto_threshold"' ).
-	       form_input('auto_threshold_custom', $form_data['auto_threshold_custom'], 'id="auto_threshold_custom" style="display:none; width:40%; margin-left:10px;"')
+	    form_dropdown('auto_threshold', $threshold_options, $form_data['auto_threshold'], 'id="auto_threshold"' ).'<span id="auto_threshold_custom_wrap" style="display:none; ">'.
+	       form_input('auto_threshold_custom', $form_data['auto_threshold_custom'], 'id="auto_threshold_custom" style="width:40%; margin-left:10px;"').'</span>'
 	       .m62_form_errors($form_errors['auto_threshold'])
 	       .m62_form_errors($form_errors['auto_threshold_custom'])
 	);
