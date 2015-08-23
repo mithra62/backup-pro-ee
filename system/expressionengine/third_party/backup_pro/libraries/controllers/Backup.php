@@ -31,6 +31,7 @@ trait BackupProBackupController
         $error = $this->services['errors'];
         $backup = $this->services['backup']->setStoragePath($this->settings['working_directory']);
         $error->clearErrors()->checkStorageLocations($this->settings['storage_details'])
+              ->checkWorkingDirectory($this->settings['working_directory'])
               ->checkBackupDirs($backup->getStorage());
         if( $error->totalErrors() == '0' )
         {
@@ -73,6 +74,7 @@ trait BackupProBackupController
         $backup = $this->services['backup']->setStoragePath($this->settings['working_directory']);
         $error->clearErrors()->checkStorageLocations($this->settings['storage_details'])
               ->checkBackupDirs($backup->getStorage())
+              ->checkWorkingDirectory($this->settings['working_directory'])
               ->checkFileBackupLocations($this->settings['backup_file_location']);
         if( $error->totalErrors() == 0 )
         {
