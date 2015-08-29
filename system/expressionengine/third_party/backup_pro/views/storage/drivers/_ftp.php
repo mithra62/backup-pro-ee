@@ -1,5 +1,5 @@
 <input type="hidden" value="0" name="ftp_passive" />
-
+<input type="hidden" value="0" name="ftp_ssl" />
 <?php 	
 $this->table->add_row(
     '<label for="ftp_hostname">'.$view_helper->m62Lang('ftp_hostname').'</label><div class="subtext">'.$view_helper->m62Lang('ftp_hostname_instructions').'</div>', 
