@@ -29,7 +29,7 @@ class Backup_pro_lib
 	   $menu = array(
 			'dashboard'		=> $this->url_base.'index',
 		    'backup_db'		=> $this->url_base.'backup&type=database',
-		    'backup_files'	=> $this->url_base.'backup&type=files'
+		    'backup_files'	=> $this->url_base.'backup&type=file'
 		);
 		
 		if(ee()->session->userdata('group_id') == '1' || (isset($this->settings['allowed_access_levels']) && is_array($this->settings['allowed_access_levels'])))
