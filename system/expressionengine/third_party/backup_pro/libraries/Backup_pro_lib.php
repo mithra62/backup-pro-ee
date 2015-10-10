@@ -29,7 +29,7 @@ class Backup_pro_lib
 	   $menu = array(
 			'dashboard'		=> $this->url_base.'index',
 		    'backup_db'		=> $this->url_base.'backup&type=database',
-		    'backup_files'	=> $this->url_base.'backup&type=file'
+		    'backup_files'	=> $this->url_base.'backup&type=files'
 		);
 		
 		if(ee()->session->userdata('group_id') == '1' || (isset($this->settings['allowed_access_levels']) && is_array($this->settings['allowed_access_levels'])))
@@ -104,7 +104,7 @@ class Backup_pro_lib
 		$action_id = $this->get_cron_action();
 		$url = ee()->config->config['site_url'].'?backup_pro='.$settings['cron_query_key'].AMP.'ACT='.$action_id;
 		return array(
-			 'file_backup' => array('url' => $url.AMP.'type=file', 'cmd' => 'curl "'.$url.AMP.'type=files"'),
+			 'file_backup' => array('url' => $url.AMP.'type=file', 'cmd' => 'curl "'.$url.AMP.'type=file"'),
 			 'db_backup' => array('url' => $url.AMP.'type=db', 'cmd' => 'curl "'.$url.AMP.'type=db"')
 		);
 	}
