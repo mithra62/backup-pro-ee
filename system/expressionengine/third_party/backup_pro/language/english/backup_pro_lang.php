@@ -33,4 +33,5 @@ $lang = array(
 'home_bp_dashboard_menu' => 'Dashboard',
 'files_bp_dashboard_menu' => 'File Backups',
 'db_bp_dashboard_menu' => 'Database Backups',    
+'dashboard' => 'Dashboard',
 );
