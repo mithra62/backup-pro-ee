@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Backup Pro EECMS" default="move_zip">
+
+	<target name="test">
+		<phpunit haltonfailure="true" printsummary="true" configuration="../mithra62-lib/mithra62/phpunit.xml">
+
+		</phpunit>
+	</target>
+
+    <target name="prepare" depends="test">
+		<delete dir="../builds/eecms/backup_pro" />
+        <echo msg="Making directory ./builds/eecms/backup_pro" />
+        <mkdir dir="../builds/eecms/backup_pro" />
+    </target>
+
+    <target name="ee-files" depends="prepare">
+        <echo msg="Copying files to build directory..." />
+
+		<echo msg="Copying system directory to ./builds/eecms/backup_pro/system..." />
+		<copy todir="../builds/eecms/backup_pro/system">
+			<fileset dir="system">
+				<include name="**"></include>
+				<exclude name="**/mithra62/**"></exclude>
+				<exclude name="**/vendor/**"></exclude>
+				<exclude name="**composer.**"></exclude>
+				<exclude name="**/resources/**"></exclude>
+			</fileset>
+		</copy>
+    </target>
+
+    <target name="m62-files" depends="ee-files">
+        <echo msg="Copying files to mithra62 directory..." />
+		<copy todir="../builds/eecms/backup_pro/system/expressionengine/third_party/backup_pro/mithra62">
+			<fileset dir="../mithra62-lib/mithra62">
+				<include name="**"></include>
+				<exclude name="**/BackupPro/**"></exclude>
+				<exclude name="**.phar**"></exclude>
+				<exclude name="**/docs/**"></exclude>
+			</fileset>
+		</copy>
+
+        <echo msg="Copying BackupPro files..." />
+		<copy todir="../builds/eecms/backup_pro/system/expressionengine/third_party/backup_pro/mithra62/BackupPro">
+			<fileset dir="../backup-pro-lib/BackupPro">
+				<include name="**"></include>
+			</fileset>
+		</copy>
+
+		<echo msg="Copying themes directory to ./builds/EEMCS/themes..." />
+		<copy todir="../builds/eecms/backup_pro/themes/third_party/backup_pro">
+			<fileset dir="../backup-pro-lib/resources">
+				<include name="**"></include>
+			</fileset>
+		</copy>
+
+        <echo msg="Copying vendor files..." />
+		<copy todir="../builds/eecms/backup_pro/system/expressionengine/third_party/backup_pro/vendor">
+			<fileset dir="../mithra62-lib/vendor">
+				<include name="**"></include>
+			</fileset>
+		</copy>
+    </target>
+
+    <target name="zip" depends="m62-files">
+        <echo msg="Creating archive..." />
+
+        <zip destfile="../builds/eecms/backup_pro.ee.${version}.zip">
+            <fileset dir="../builds/eecms/backup_pro">
+                <include name="**" />
+            </fileset>
+        </zip>
+
+        <echo msg="Files copied and compressed in build directory OK!" />
+    </target>
+
+    <target name="move_zip" depends="zip">
+        <echo msg="Copying zip to export folder..." />
+		<copy file="../builds/eecms/backup_pro.ee.${version}.zip" toFile="../../product-export/eecms/backup_pro.ee.${version}.zip" />
+    </target>
+</project>
