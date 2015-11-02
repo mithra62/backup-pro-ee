@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="Backup Pro EECMS" default="move_zip">
-
-	<target name="test">
-		<phpunit haltonfailure="true" printsummary="true" configuration="../mithra62-lib/mithra62/phpunit.xml">
-
-		</phpunit>
-	</target>
-
+	
+	<import file="../mithra62-lib/phing.unit-test.xml" /> 
+	<import file="../mithra62-lib/phing.vendor.xml" /> 
+	
     <target name="prepare" depends="test">
 		<delete dir="../builds/eecms/backup_pro" />
         <echo msg="Making directory ./builds/eecms/backup_pro" />
@@ -53,16 +50,9 @@
 				<include name="**"></include>
 			</fileset>
 		</copy>
-
-        <echo msg="Copying vendor files..." />
-		<copy todir="../builds/eecms/backup_pro/system/expressionengine/third_party/backup_pro/vendor">
-			<fileset dir="../mithra62-lib/vendor">
-				<include name="**"></include>
-			</fileset>
-		</copy>
     </target>
-
-    <target name="zip" depends="m62-files">
+	
+    <target name="zip" depends="vendor-files">
         <echo msg="Creating archive..." />
 
         <zip destfile="../builds/eecms/backup_pro.ee.${version}.zip">
