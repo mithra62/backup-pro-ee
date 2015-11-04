@@ -1,71 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project name="Backup Pro EECMS" default="move_zip">
 	
-	<import file="../mithra62-lib/phing.unit-test.xml" /> 
-	<import file="../mithra62-lib/phing.vendor.xml" /> 
-	
-    <target name="prepare" depends="test">
-		<delete dir="../builds/eecms/backup_pro" />
-        <echo msg="Making directory ./builds/eecms/backup_pro" />
-        <mkdir dir="../builds/eecms/backup_pro" />
-    </target>
+	<property name="platform_name" value="EE2" />
+	<property name="build_path" value="../builds/eecms" />
+	<property name="build_container_dir" value="${build_path}/backup_pro" />
+	<property name="main_files" value="system" />
+	<property name="cms_root_path" value="${build_container_dir}/system" />
+	<property name="vendor_path" value="${cms_root_path}/expressionengine/third_party/backup_pro/vendor" />
+	<property name="backup_pro_logic_base" value="${cms_root_path}/expressionengine/third_party/backup_pro/mithra62/BackupPro" />
+	<property name="jaeger_base" value="${cms_root_path}/expressionengine/third_party/backup_pro/mithra62" />
+		
+	<property name="platform_theme_base" value="${build_container_dir}/themes/third_party" />		
+	<property name="backup_pro_theme_base" value="${platform_theme_base}/backup_pro" />
+	<property name="build_archive_path" value="${build_path}/backup_pro.ee2.${version}.zip" />
+	<property name="export_archive_path" value="../../product-export/eecms/backup_pro.ee2.${version}.zip" />
+		
+	<property name="clean_install_bp_core_file_path" value="../../clean_cms/ee2/html/system/expressionengine/third_party/backup_pro" />
+	<property name="clean_install_bp_theme_path" value="../../clean_cms/ee2/html/themes/third_party/backup_pro" />
+		
+	<property name="clean_install_cms_add_on_path" value="../../clean_cms/ee2/html/system" />
+	<property name="clean_install_cms_theme" value="../../clean_cms/ee2/html/themes/third_party" />
 
-    <target name="ee-files" depends="prepare">
-        <echo msg="Copying files to build directory..." />
+	<import file="../backup-pro-lib/phing.prepare.xml" />
+	<import file="../backup-pro-lib/phing.cms-files.xml" />
+	<import file="../backup-pro-lib/phing.vendor-no-dev.xml" /> 
+	<import file="../backup-pro-lib/phing.bp-files.xml" /> 
+	<import file="../backup-pro-lib/phing.clean-install.xml" />  
+	<import file="../backup-pro-lib/phing.unit-test.xml" /> 
+	<import file="../backup-pro-lib/phing.archive.xml" /> 
 
-		<echo msg="Copying system directory to ./builds/eecms/backup_pro/system..." />
-		<copy todir="../builds/eecms/backup_pro/system">
-			<fileset dir="system">
-				<include name="**"></include>
-				<exclude name="**/mithra62/**"></exclude>
-				<exclude name="**/vendor/**"></exclude>
-				<exclude name="**composer.**"></exclude>
-				<exclude name="**/resources/**"></exclude>
-			</fileset>
-		</copy>
-    </target>
-
-    <target name="m62-files" depends="ee-files">
-        <echo msg="Copying files to mithra62 directory..." />
-		<copy todir="../builds/eecms/backup_pro/system/expressionengine/third_party/backup_pro/mithra62">
-			<fileset dir="../mithra62-lib/mithra62">
-				<include name="**"></include>
-				<exclude name="**/BackupPro/**"></exclude>
-				<exclude name="**.phar**"></exclude>
-				<exclude name="**/docs/**"></exclude>
-			</fileset>
-		</copy>
-
-        <echo msg="Copying BackupPro files..." />
-		<copy todir="../builds/eecms/backup_pro/system/expressionengine/third_party/backup_pro/mithra62/BackupPro">
-			<fileset dir="../backup-pro-lib/BackupPro">
-				<include name="**"></include>
-			</fileset>
-		</copy>
-
-		<echo msg="Copying themes directory to ./builds/EEMCS/themes..." />
-		<copy todir="../builds/eecms/backup_pro/themes/third_party/backup_pro">
-			<fileset dir="../backup-pro-lib/resources">
-				<include name="**"></include>
-			</fileset>
-		</copy>
-    </target>
-	
-    <target name="zip" depends="vendor-files">
-        <echo msg="Creating archive..." />
-
-        <zip destfile="../builds/eecms/backup_pro.ee.${version}.zip">
-            <fileset dir="../builds/eecms/backup_pro">
-                <include name="**" />
-            </fileset>
-        </zip>
-
-        <echo msg="Files copied and compressed in build directory OK!" />
-    </target>
-
-    <target name="move_zip" depends="zip">
-        <echo msg="Copying zip to export folder..." />
-		<copy file="../builds/eecms/backup_pro.ee.${version}.zip" toFile="../../product-export/eecms/backup_pro.ee.${version}.zip" />
-    </target>
 </project>
