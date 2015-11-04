@@ -20,6 +20,7 @@
 		
 	<property name="clean_install_cms_add_on_path" value="../../clean_cms/ee2/html/system" />
 	<property name="clean_install_cms_theme" value="../../clean_cms/ee2/html/themes/third_party" />
+	<property name="mink_test_dir" value="EE2" />
 
 	<import file="../backup-pro-lib/phing.prepare.xml" />
 	<import file="../backup-pro-lib/phing.cms-files.xml" />
