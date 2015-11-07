@@ -11,7 +11,7 @@
 
 <div class="tableFooter">
 	<div class="tableSubmit">
-		<?php echo form_submit(array('name' => 'submit', 'value' => $view_helper->m62Lang('add_storage_location'), 'class' => 'submit'));?>
+		<?php echo form_submit(array('name' => 'submit', 'value' => $view_helper->m62Lang('add_storage_location'), 'class' => 'submit', 'id' => 'm62_settings_submit'));?>
 	</div>
 </div>	
 <?php echo form_close()?>
