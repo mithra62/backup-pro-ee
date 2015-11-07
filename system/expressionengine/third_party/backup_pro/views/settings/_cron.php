@@ -1,4 +1,5 @@
 <h3  class="accordion"><?=$view_helper->m62Lang('configure_cron')?></h3>
+<div>
 <input type="hidden" value="0" name="cron_attach_backups" />
 <input type="hidden" name="cron_notify_member_ids[]" value="" />
 <?php 
