@@ -19,6 +19,11 @@ if( !file_exists( './cli.config.php') )
     exit;
 }
 
+//error_reporting(E_ALL | E_STRICT);
+//ini_set('display_errors', 1);
+ini_set('log_errors', 0);
+ini_set('html_errors', 0);
+
 require_once dirname(__FILE__).'/vendor/autoload.php';
 
 use mithra62\BackupPro\Platforms\Controllers\Console;
