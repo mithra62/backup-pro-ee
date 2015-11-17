@@ -200,7 +200,7 @@ class Backup_pro_ext extends Eecms implements BackupPro
         $backup = $this->services['backups']->setBackupPath($this->settings['working_directory']);
         $backups = $backup->getAllBackups($this->settings['storage_details']);
         $backup_meta = $backup->getBackupMeta($backups);
-		    $errors = $this->errors;
+		$errors = $this->errors;
 	    if( $this->settings['check_backup_state_cp_login'] == '1' && 
 	        count($this->settings['backup_missed_schedule_notify_emails']) >= 1 &&
 	        (isset($errors['db_backup_past_expectation']) || isset($errors['file_backup_past_expectation'])) 
