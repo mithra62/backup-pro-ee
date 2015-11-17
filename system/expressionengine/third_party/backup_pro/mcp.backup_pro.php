@@ -97,6 +97,11 @@ class Backup_pro_mcp extends Eecms
 		$this->url_base = BASE.AMP.$this->query_base;
 		ee()->backup_pro->set_url_base($this->url_base);
 
+		//grab the backup details
+		$backup = $this->services['backups'];
+		$backups = $backup->setBackupPath($this->settings['working_directory'])->getAllBackups($this->settings['storage_details']);
+		$backup_meta = $backup->getBackupMeta($backups);
+		
 		$nav_links = ee()->backup_pro->get_right_menu($this->settings);
 		ee()->load->vars(
 		    array(
@@ -106,7 +111,9 @@ class Backup_pro_mcp extends Eecms
 		        'nav_links' => $nav_links,
 		        'theme_folder_url' => m62_theme_url(),
 		        'lang' => $this->services['lang'],
-		        'view_helper' => $this->view_helper
+		        'view_helper' => $this->view_helper,
+		        'backup_meta' => $backup_meta,
+		        'backups' => $backups
 		    )
 		);
 
