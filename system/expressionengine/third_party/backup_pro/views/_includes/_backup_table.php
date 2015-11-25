@@ -18,7 +18,7 @@
 		<th class=""><?php echo $view_helper->m62Lang('type'); ?></th>
 		<?php endif; ?>
 		<th class=""><?php echo $view_helper->m62Lang('file_size'); ?></th>
-		<th class=""><?php echo $view_helper->m62Lang('time'); ?></th>
+		<th class="{sorter: 'time'}"><?php echo $view_helper->m62Lang('time'); ?></th>
 		<th><?php echo $view_helper->m62Lang('memory'); ?></th>
 		<?php if(isset($enable_actions) && $enable_actions == 'yes' ): ?>
 		<th class=""></th>
@@ -63,14 +63,14 @@
 		<?php endif; ?>
 	</td>
 	<td style="white-space: nowrap">
-		<!-- <?php echo $backup['created_date']; ?> --><?php echo $view_helper->m62DateTime($backup['created_date']); ?>
+		<!-- <?php echo str_pad($backup['created_date'], 20, '0', STR_PAD_LEFT); ?> --><?php echo $view_helper->m62DateTime($backup['created_date']); ?>
 	</td>
 	<?php if(isset($enable_type) && $enable_type == 'yes' ): ?>
 	<td><?php echo $view_helper->m62Lang($backup['backup_type']); ?></td>
 	<?php endif; ?>
-	<td style="white-space: nowrap"><!-- <?php echo $backup['compressed_size']; ?> --><?php echo $view_helper->m62FileSize($backup['compressed_size']); ?></td>
-	<td style="white-space: nowrap"><!-- <?php echo $backup['time_taken']; ?> --><?php echo $view_helper->m62TimeFormat($backup['time_taken']); ?></td>
-	<td style="white-space: nowrap"><!-- <?php echo $backup['max_memory']; ?> --><?php echo $view_helper->m62FileSize($backup['max_memory']); ?></td>
+	<td style="white-space: nowrap"><!-- <?php echo str_pad($backup['compressed_size'], 20, '0', STR_PAD_LEFT); ?> --><?php echo $view_helper->m62FileSize($backup['compressed_size']); ?></td>
+	<td style="white-space: nowrap"><!-- <?php echo str_pad(round($backup['time_taken']), 20, '0', STR_PAD_LEFT); ?> --><?php echo $view_helper->m62TimeFormat($backup['time_taken']); ?></td>
+	<td style="white-space: nowrap"><!-- <?php echo str_pad($backup['max_memory'], 20, '0', STR_PAD_LEFT); ?> --><?php echo $view_helper->m62FileSize($backup['max_memory']); ?></td>
 		<?php if(isset($enable_actions) && $enable_actions == 'yes' ): ?>
 	<td align="right" style="width:40px; white-space: nowrap">
 		<div style="float:right">
