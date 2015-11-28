@@ -26,6 +26,11 @@
 	);
 	
 	$this->table->add_row(
+	    '<label for="php_backup_method_select_chunk_limit">'.$view_helper->m62Lang('php_backup_method_select_chunk_limit').' </label><div class="subtext">'.$view_helper->m62Lang('php_backup_method_select_chunk_limit_instructions').'</div>',
+	    form_input('php_backup_method_select_chunk_limit', $form_data['php_backup_method_select_chunk_limit'], 'id="php_backup_method_select_chunk_limit"').m62_form_errors($form_errors['php_backup_method_select_chunk_limit'])
+	);
+	
+	$this->table->add_row(
 	    '<label for="db_restore_method">'.$view_helper->m62Lang('db_restore_method').'</label><div class="subtext">'.$view_helper->m62Lang('db_restore_method_instructions').'</div>', 
 	    form_dropdown('db_restore_method', $db_restore_methods, $form_data['db_restore_method'], 'id="db_restore_method"').
 	       '<span id="mysqlcli_command_wrap" style="display:none;">'.form_input('mysqlcli_command', $form_data['mysqlcli_command'], 'id="mysqlcli_command" style="width:60%; margin-left:10px;"').'</span>'

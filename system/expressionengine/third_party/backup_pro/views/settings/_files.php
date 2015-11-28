@@ -1,4 +1,5 @@
 <h3  class="accordion"><?=$view_helper->m62Lang('config_files')?></h3>
+<input type="hidden" value="0" name="regex_file_exclude" />
 <div>
 	<?php 
 	
@@ -21,6 +22,11 @@
 	$this->table->add_row(
 	    '<label for="exclude_paths">'.$view_helper->m62Lang('exclude_paths').'</label><div class="subtext">'.$view_helper->m62Lang('exclude_paths_instructions').'</div>', 
 	    form_textarea('exclude_paths', $form_data['exclude_paths'], 'cols="90" rows="6" id="exclude_paths"').m62_form_errors($form_errors['exclude_paths'])
+	);
+	
+	$this->table->add_row(
+        '<label for="regex_file_exclude">'.$view_helper->m62Lang('regex_file_exclude').'</label><div class="subtext">'.$view_helper->m62Lang('regex_file_exclude_instructions').'</div>', 
+	    form_checkbox('regex_file_exclude', '1', $form_data['regex_file_exclude'], 'id="regex_file_exclude"').m62_form_errors($form_errors['regex_file_exclude'])
 	);
 	
 	echo $this->table->generate();
