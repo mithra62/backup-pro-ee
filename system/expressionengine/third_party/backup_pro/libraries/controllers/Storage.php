@@ -58,7 +58,7 @@ trait BackupProStorageController
      */
     public function new_storage()
     {
-        $engine = ee()->input->get_post('engine');
+        $engine = $this->platform->getPost('engine');
         $variables = array();
         $variables['available_storage_engines'] = $this->services['backup']->getStorage()->getAvailableStorageDrivers();
     
@@ -115,7 +115,7 @@ trait BackupProStorageController
      */    
     public function edit_storage()
     {
-        $storage_id = ee()->input->get_post('id');
+        $storage_id = $this->platform->getPost('id');
         if( empty($this->settings['storage_details'][$storage_id]) )
         {
             ee()->session->set_flashdata('message_error', $this->services['lang']->__('invalid_storage_id'));
@@ -176,7 +176,7 @@ trait BackupProStorageController
             ee()->functions->redirect($this->url_base.'view_storage');
         }
     
-        $storage_id = ee()->input->get_post('id');
+        $storage_id = $this->platform->getPost('id');
         if( empty($this->settings['storage_details'][$storage_id]) )
         {
             ee()->session->set_flashdata('message_error', $this->services['lang']->__('invalid_storage_id'));

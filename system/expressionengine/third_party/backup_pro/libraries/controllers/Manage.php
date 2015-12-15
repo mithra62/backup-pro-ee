@@ -24,8 +24,8 @@ trait BackupProManageController
     public function download()
     {
         $encrypt = $this->services['encrypt'];
-        $file_name = $encrypt->decode(ee()->input->get_post('id'));
-        $type = ee()->input->get_post('type');
+        $file_name = $encrypt->decode( $this->platform->getPost('id') );
+        $type = $this->platform->getPost('type'); 
         $storage = $this->services['backup']->setStoragePath($this->settings['working_directory']);
         if($type == 'files')
         {
@@ -70,9 +70,9 @@ trait BackupProManageController
     public function update_backup_note()
     {
         $encrypt = $this->services['encrypt'];
-        $file_name = $encrypt->decode(ee()->input->get_post('backup'));
-        $backup_type = ee()->input->get_post('backup_type'); 
-        $note_text = ee()->input->get_post('note_text'); 
+        $file_name = $encrypt->decode( $this->platform->getPost('backup') );
+        $backup_type = $this->platform->getPost('backup_type');
+        $note_text = $this->platform->getPost('note_text');
         if($note_text && $file_name)
         {
             $path = rtrim($this->settings['working_directory'], DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$backup_type;
@@ -87,15 +87,15 @@ trait BackupProManageController
      */
     public function delete_backup_confirm()
     {
-        $delete_backups = ee()->input->get_post('backups');
-        $type = ee()->input->get_post('type'); 
+        $delete_backups = $this->platform->getPost('backups');
+        $type = $this->platform->getPost('type');
         $backups = $this->validateBackups($delete_backups, $type);
         $variables = array(
             'settings' => $this->settings,
             'backups' => $backups,
             'backup_type' => $type,
             'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
-            'method' => ee()->input->get_post('method'),
+            'method' => $this->platform->getPost('method'),
             'errors' => $this->errors
         );
     
@@ -110,8 +110,8 @@ trait BackupProManageController
      */
     public function delete_backups()
     {
-        $delete_backups = ee()->input->get_post('backups');
-        $type = ee()->input->get_post('type'); 
+        $delete_backups = $this->platform->getPost('backups');
+        $type = $this->platform->getPost('type'); 
         $backups = $this->validateBackups($delete_backups, $type);
         if( $this->services['backups']->setBackupPath($this->settings['working_directory'])->removeBackups($backups) )
         {

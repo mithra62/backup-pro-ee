@@ -23,7 +23,7 @@ trait BackupProSettingsController
      */
     public function settings()
     {
-        $section = ( ee()->input->get_post('section') != '' ? ee()->input->get_post('section') : 'general' );
+        $section = ( $this->platform->getPost('section') != '' ? $this->platform->getPost('section') : 'general' );
         $variables = array('form_data' => $this->settings, 'form_errors' => $this->returnEmpty($this->settings));
         $variables['form_data']['cron_notify_emails'] = implode("\n", $this->settings['cron_notify_emails']);
         $variables['form_data']['exclude_paths'] = implode("\n", $this->settings['exclude_paths']);
@@ -52,7 +52,7 @@ trait BackupProSettingsController
                 if( $this->services['settings']->update($data) )
                 {
                     ee()->session->set_flashdata('message_success', $this->services['lang']->__('settings_updated'));
-                    ee()->functions->redirect($this->url_base.'settings'.AMP.'section='.ee()->input->get_post('section'));
+                    ee()->functions->redirect($this->url_base.'settings'.AMP.'section='.$this->platform->getPost('section'));
                 }
             }
             else

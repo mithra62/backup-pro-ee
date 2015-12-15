@@ -24,7 +24,7 @@ trait BackupProRestoreController
     public function restore_confirm()
     {
         $encrypt = $this->services['encrypt'];
-        $file_name = $encrypt->decode(ee()->input->get_post('id'));
+        $file_name = $encrypt->decode($this->platform->getPost('id'));
         $storage = $this->services['backup']->setStoragePath($this->settings['working_directory']);
     
         $file = $storage->getStorage()->getDbBackupNamePath($file_name);
@@ -34,7 +34,7 @@ trait BackupProRestoreController
             'backup' => $backup_info,
             'errors' => $this->errors,
             'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
-            'method' => ee()->input->get_post('method'),
+            'method' => $this->platform->getPost('method'),
         );
     
         ee()->view->cp_page_title = $this->services['lang']->__('restore_db');
@@ -47,7 +47,7 @@ trait BackupProRestoreController
     public function restore_database()
     {
         $encrypt = $this->services['encrypt'];
-        $file_name = $encrypt->decode(ee()->input->get_post('id'));
+        $file_name = $encrypt->decode($this->platform->getPost('id'));
         $storage = $this->services['backup']->setStoragePath($this->settings['working_directory']);
     
         $file = $storage->getStorage()->getDbBackupNamePath($file_name);

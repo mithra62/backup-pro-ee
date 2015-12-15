@@ -59,7 +59,7 @@ trait BackupProDashboardController
             'available_space' => $available_space,
             'errors' => $this->errors,
             'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
-            'method' => ee()->input->get_post('method')
+            'method' => $this->platform->getPost('method')
         );
     
         ee()->view->cp_page_title = $this->services['lang']->__('dashboard');
@@ -81,7 +81,7 @@ trait BackupProDashboardController
             'backups' => $backups,
             'errors' => $this->errors,
             'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
-            'method' => ee()->input->get_post('method')
+            'method' => $this->platform->getPost('method')
         );
          
         ee()->view->cp_page_title = ee()->lang->line('database_backups');
@@ -108,7 +108,7 @@ trait BackupProDashboardController
             'backups' => $backups,
             'errors' => $this->errors,
             'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
-            'method' => ee()->input->get_post('method')
+            'method' => $this->platform->getPost('method')
         );
 
         ee()->jquery->tablesorter('#file_backups table', '{headers: {8: {sorter: false}, 0: {sorter: false}, 1: {sorter: false}, 2: {sorter: false}, 3: {sorter: false}}, widgets: ["zebra"], sortList: [[4,1]]}');

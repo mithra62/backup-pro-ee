@@ -114,7 +114,7 @@ trait BackupProBackupController
 
     public function backup()
     {
-        $type = ee()->input->get_post('type', TRUE);
+        $type = $this->platform->getPost('type', TRUE);
         ee()->view->cp_page_title = $this->services['lang']->__('backup_'.$type);
         $proc_url = FALSE;
         $backup = $this->services['backup']->setStoragePath($this->settings['working_directory']);
