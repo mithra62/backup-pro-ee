@@ -1,5 +1,6 @@
 <h3  class="accordion"><?=$view_helper->m62Lang('integrity_agent_cron')?></h3>
 <input type="hidden" name="cron_notify_member_ids[]" value="" />
+<input type="hidden" value="0" name="check_backup_state_cp_login" />
 <?php 
 if(count($ia_cron_commands) >= 1)
 {
