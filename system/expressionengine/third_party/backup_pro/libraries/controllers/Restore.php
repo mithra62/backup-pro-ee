@@ -34,7 +34,7 @@ trait BackupProRestoreController
             'backup' => $backup_info,
             'errors' => $this->errors,
             'menu_data' => ee()->backup_pro->get_dashboard_view_menu(),
-            'method' => $this->platform->getPost('method'),
+            'method' => 'db_backups',
         );
     
         ee()->view->cp_page_title = $this->services['lang']->__('restore_db');

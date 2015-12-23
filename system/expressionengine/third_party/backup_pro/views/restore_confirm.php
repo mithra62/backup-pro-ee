@@ -2,6 +2,7 @@
 <?php $this->load->view('_includes/_backups_submenu'); ?>
 <br clear="all" />
 
+<div id="_restore_details_table">
 <p><?php echo $view_helper->m62Lang('restore_db_question'); ?></p>
 <p class="notice"><?php echo $view_helper->m62Lang('action_can_not_be_undone'); ?> <?php echo $view_helper->m62Lang('restore_double_speak'); ?></p>
 
@@ -31,10 +32,19 @@ $this->table->add_row(array('<strong>'.$view_helper->m62Lang('md5_hash').'</stro
 echo $this->table->generate();
 $this->table->clear();
 ?>
+</div>
 
+	<div id="restore_running_details"  style="display:none" >
+		<div id="backup_instructions">
+		  <?php echo $view_helper->m62Lang('restore_in_progress_instructions'); ?>
+		</div>			
+		<br /><?php echo $view_helper->m62Lang('restore_in_progress'); ?>
+		<img src="<?php echo $theme_folder_url; ?>backup_pro/images/indicator.gif" id="animated_image" />
+	</div>	
+	
 <?php echo form_open($query_base.'restore_database&id='.urlencode($view_helper->m62Encode($backup['details_file_name'])), array('id'=>'backup_form')); ?>
 
 	<div class="buttons">
-		<input type="submit" value="<?php echo $view_helper->m62Lang('restore_db'); ?>" class="btn submit" >
+		<input type="submit" value="<?php echo $view_helper->m62Lang('restore_db'); ?>" class="btn submit" id="_restore_direct" >
 	</div>
 <?php echo form_close()?>
