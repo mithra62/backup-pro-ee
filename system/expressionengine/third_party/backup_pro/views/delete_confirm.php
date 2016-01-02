@@ -16,7 +16,7 @@
 	?>
 
 	<div class="buttons right">
-		<input type="submit" value="<?php echo $view_helper->m62Lang('delete'); ?>" class="btn submit" >
+		<input type="submit" value="<?php echo $view_helper->m62Lang('delete'); ?>" class="btn submit" name="_remove_backup_button" id="_remove_backup_button">
 	</div>
 
 <?php echo form_close()?>
