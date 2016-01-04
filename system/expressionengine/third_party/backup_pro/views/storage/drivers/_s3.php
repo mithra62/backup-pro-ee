@@ -17,7 +17,7 @@ $this->table->add_row(
 
 $this->table->add_row(
     '<label for="s3_optional_prefix">'.$view_helper->m62Lang('s3_optional_prefix').'</label><div class="subtext">'.$view_helper->m62Lang('s3_optional_prefix_instructions').'</div>',
-    form_input('s3_optional_prefix', $form_data['s3_optional_prefix'], 'id="s3_bucket"').m62_form_errors($form_errors['s3_optional_prefix'])
+    form_input('s3_optional_prefix', $form_data['s3_optional_prefix'], 'id="s3_optional_prefix"').m62_form_errors($form_errors['s3_optional_prefix'])
 );
 
 $this->table->add_row(
