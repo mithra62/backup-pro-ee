@@ -9,7 +9,7 @@
  */
 
 //set your system path
-$settings = array(
+return array(
     'site_url' => '',
     'site_name' => '',
     'timezone' => '',
