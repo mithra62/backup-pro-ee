@@ -29,8 +29,8 @@ $this->table->set_heading($view_helper->m62Lang('storage_location_name'), $view_
 	
     	foreach($storage_details AS $key => $storage): 
     	   $row = array(
-    	       '<a href="'.$url_base.'edit_storage&id='.$key.'">'.$storage['storage_location_name'].'</a>',
-    	       '<img src="'.$theme_folder_url.'backup_pro/images/storage/'.$storage['storage_location_driver'].'.png" class="" title="'.$storage['storage_location_name'].'">',
+    	       '<a href="'.$url_base.'edit_storage&id='.$key.'">'.$view_helper->m62Escape($storage['storage_location_name']).'</a>',
+    	       '<img src="'.$theme_folder_url.'backup_pro/images/storage/'.$storage['storage_location_driver'].'.png" class="" title="'.$view_helper->m62Escape($storage['storage_location_name']).'">',
     	       ( $storage['storage_location_status'] == '1' ? $view_helper->m62Lang('active') : $view_helper->m62Lang('inactive') ),
     	       $view_helper->m62DateTime($storage['storage_location_create_date']),
     	       ($can_remove ? '<a href="'.$url_base.'remove_storage&id='.$key.'">Remove</a>' : '')

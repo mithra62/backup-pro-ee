@@ -10,7 +10,7 @@
 $this->table->set_heading('&nbsp;', '');
 if( $backup['note'] != '' )
 {
-    $this->table->add_row(array('<strong>'.$view_helper->m62Lang('note').'</strong>', $backup['note']) );
+    $this->table->add_row(array('<strong>'.$view_helper->m62Lang('note').'</strong>', $view_helper->m62Escape($backup['note'])) );
 }
 $this->table->add_row(array('<strong>'.$view_helper->m62Lang('taken').'</strong>', $view_helper->m62DateTime($backup['created_date'])) );
 $this->table->add_row(array('<strong>'.$view_helper->m62Lang('backup_type').'</strong>', $view_helper->m62Lang($backup['database_backup_type'])));
@@ -27,8 +27,8 @@ $this->table->add_row(array('<strong>'.$view_helper->m62Lang('verified').'</stro
 $this->table->add_row(array('<strong>'.$view_helper->m62Lang('time_taken').'</strong>', $view_helper->m62TimeFormat($backup['time_taken']) ));
 $this->table->add_row(array('<strong>'.$view_helper->m62Lang('max_memory').'</strong>', $view_helper->m62FileSize($backup['max_memory'])));
 $this->table->add_row(array('<strong>'.$view_helper->m62Lang('uncompressed_sql_size').'</strong>', $view_helper->m62FileSize($backup['uncompressed_size'])));
-$this->table->add_row(array('<strong>'.$view_helper->m62Lang('total_tables').'</strong>', $backup['item_count']));
-$this->table->add_row(array('<strong>'.$view_helper->m62Lang('md5_hash').'</strong>', $backup['hash']));
+$this->table->add_row(array('<strong>'.$view_helper->m62Lang('total_tables').'</strong>', $view_helper->m62Escape($backup['item_count'])));
+$this->table->add_row(array('<strong>'.$view_helper->m62Lang('md5_hash').'</strong>', $view_helper->m62Escape($backup['hash'])));
 echo $this->table->generate();
 $this->table->clear();
 ?>
