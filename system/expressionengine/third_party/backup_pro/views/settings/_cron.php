@@ -32,7 +32,7 @@
 	);
 	$this->table->add_row(
 	    '<label for="cron_notify_email_mailtype">'.$view_helper->m62Lang('cron_notify_email_mailtype').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_email_mailtype_instructions').'</div>', 
-	    form_dropdown('cron_notify_email_mailtype', array('html' => 'html', 'text' => 'text'), $form_data['cron_notify_email_mailtype'], 'id="cron_notify_email_mailtype"').$view_helper->m62FormErrors($form_errors['cron_notify_email_mailtype'])
+	    form_dropdown('cron_notify_email_mailtype', $view_helper->m62Options('email_type'), $form_data['cron_notify_email_mailtype'], 'id="cron_notify_email_mailtype"').$view_helper->m62FormErrors($form_errors['cron_notify_email_mailtype'])
 	);
 	$this->table->add_row(
 	    '<label for="cron_notify_email_subject">'.$view_helper->m62Lang('cron_notify_email_subject').'</label><div class="subtext">'.$view_helper->m62Lang('cron_notify_email_subject_instructions').'</div>', 
