@@ -16,6 +16,11 @@ $this->table->add_row(
 );
 
 $this->table->add_row(
+    '<label for="s3_region">'.$view_helper->m62Lang('s3_region').'</label><div class="subtext">'.$view_helper->m62Lang('s3_region_instructions').'</div>',
+    form_dropdown('s3_region', $view_helper->m62Options('s3_regions', false), $form_data['s3_region'], 'id="s3_region"').$view_helper->m62FormErrors($form_errors['s3_region'])
+);
+
+$this->table->add_row(
     '<label for="s3_optional_prefix">'.$view_helper->m62Lang('s3_optional_prefix').'</label><div class="subtext">'.$view_helper->m62Lang('s3_optional_prefix_instructions').'</div>',
     form_input('s3_optional_prefix', $form_data['s3_optional_prefix'], 'id="s3_optional_prefix"').$view_helper->m62FormErrors($form_errors['s3_optional_prefix'])
 );
