@@ -17,6 +17,11 @@ $this->table->add_row(
 );
 
 $this->table->add_row(
+    '<label for="rcf_optional_prefix">'.$view_helper->m62Lang('rcf_optional_prefix').'</label><div class="subtext">'.$view_helper->m62Lang('rcf_optional_prefix_instructions').'</div>',
+    form_input('rcf_optional_prefix', $form_data['rcf_optional_prefix'], 'id="rcf_optional_prefix"').$view_helper->m62FormErrors($form_errors['rcf_optional_prefix'])
+);
+
+$this->table->add_row(
     '<label for="rcf_location">'.$view_helper->m62Lang('rcf_location').'</label><div class="subtext">'.$view_helper->m62Lang('rcf_location_instructions').'</div>', 
     form_dropdown('rcf_location', $cf_location_options, $form_data['rcf_location'], 'id="rcf_location"').$view_helper->m62FormErrors($form_errors['rcf_location'])
 );
