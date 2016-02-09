@@ -9,7 +9,7 @@
 		<th></th>
 	
 		<?php if(isset($enable_delete) && $enable_delete == 'yes' ): ?>
-		<th></th>
+		<th> <?php echo form_checkbox('bp_toggle_all', 1, false, 'id="fdsafdsa" class="fdsafdsafdsa"'); ?></th>
 		<?php endif; ?>
 		<th></th>
 		<th></th>
