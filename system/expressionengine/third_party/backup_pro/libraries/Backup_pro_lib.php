@@ -133,6 +133,15 @@ class Backup_pro_lib
 		);
 	}
 	
+	public function get_api_route_entry(array $settings)
+	{
+	    ee()->load->dbforge();
+	    ee()->db->select('action_id');
+	    $query = ee()->db->get_where('actions', array('class' => 'Backup_pro', 'method' => 'api'));
+	    $action_id = $query->row('action_id');
+	    return ee()->config->config['site_url'].'?ACT='.$action_id.AMP.'bp_method=';
+	}
+	
 	/**
 	 * Returns the Action ID for the Integrity Agent Cron action
 	 */
