@@ -1,5 +1,5 @@
 <p><?=$view_helper->m62Lang('rest_api_instructions')?></p>
-
+<input type="hidden" value="0" name="enable_rest_api" />
 <h3  class="accordion"><?=$view_helper->m62Lang('rest_api_details')?></h3>
 
 <div>
