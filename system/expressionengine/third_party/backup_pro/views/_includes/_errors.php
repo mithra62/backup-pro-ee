@@ -40,7 +40,7 @@ if(count($errors) >= 1)
 	        else if ( $error == 'file_backup_past_expectation_stub' )
 	        {
 	            $lang = sprintf(
-	                $view_helper->m62Lang('files_backup_past_expectation'),
+	                $view_helper->m62Lang('file_backup_past_expectation'),
 	                $view_helper->getRelativeDateTime($backup_meta['files']['newest_backup_taken_raw'], false),
 	                $url_base.'backup&type=files'
 	            );
