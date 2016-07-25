@@ -35,7 +35,7 @@ class Backup_pro extends Eecms
 	
 	public function api()
 	{
-	    $_SERVER['REQUEST_URI'] = '/backup_pro/api'.$this->platform->getPost('bp_method');
+	    $_SERVER['REQUEST_URI'] = '/backup_pro/api'.$this->platform->getPost('api_method');
 	    $this->services['rest']->setPlatform($this->platform)->getServer()->run();
 	    exit;
 	}
