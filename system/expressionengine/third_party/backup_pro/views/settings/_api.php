@@ -7,8 +7,8 @@
 	
 	$this->table->set_heading($view_helper->m62Lang('setting'),$view_helper->m62Lang('value'));
 	$this->table->add_row(
-	    '<label for="working_directory">'.$view_helper->m62Lang('rest_api_route_entry').'</label>', 
-	    '<a href="'.$rest_api_route_entry.'">'.$rest_api_route_entry.'</a>'
+	    '<label for="rest_api_url_wrap">'.$view_helper->m62Lang('rest_api_route_entry').'</label>', 
+	    '<a href="'.$rest_api_route_entry.'" id="rest_api_url_wrap">'.$rest_api_route_entry.'</a>'
     );
 	
 	$this->table->add_row(
